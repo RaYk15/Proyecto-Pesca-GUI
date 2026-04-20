@@ -1,0 +1,8 @@
+bin/
+out/
+*.class
+*.jar
+.eclipse
+.settings/
+.classpath
+.project
