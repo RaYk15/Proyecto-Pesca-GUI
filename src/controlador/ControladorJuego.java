@@ -10,12 +10,10 @@ public class ControladorJuego {
 	//private Jugador miJugador = new Jugador();
 	private ControladorPesca controladorPesca = new ControladorPesca();
 	private ControladorTienda controladorTienda = new ControladorTienda();
-	private ControladorSaves controladorSaves;
 	private VentanaPrincipal ventanaPrincipal;
 
 	// metodos propios
 	public void comenzar() {
-		controladorSaves = new ControladorSaves();
 		ventanaPrincipal = new VentanaPrincipal();
 		ventanaPrincipal.setVisible(true);
 	}

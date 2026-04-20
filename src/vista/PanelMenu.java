@@ -67,7 +67,7 @@ public class PanelMenu extends JPanel {
 		crearEspaciado(this, panelSalir, 30);
 	}
 
-	// crear espaciado entre los elementos
+	// crear espaciado entre los elementos y añadirlo al menu
 	private void crearEspaciado(JPanel panel, JComponent componente, int espacio) {
 		panel.add(componente);
 		panel.add(Box.createRigidArea(new Dimension(0, espacio)));
@@ -115,14 +115,14 @@ public class PanelMenu extends JPanel {
 		panelCargar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controladorSaves.cargarPartida(panelCargar);
+				controladorSaves.cargarPartida(panelCargar, ventanaPrincipal);
 			}
 		});
 
 		panelContinuar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controladorSaves.continuarPartida(panelContinuar);
+				controladorSaves.continuarPartida(panelContinuar, ventanaPrincipal);
 			}
 		});
 	}

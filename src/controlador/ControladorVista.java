@@ -8,12 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import vista.VentanaPrincipal;
-import vista.VentanaSaves;
 
 public class ControladorVista {
-	// atributos
-	VentanaSaves ventanaSaves = new VentanaSaves();
-
 	// metodos propios
 	// funcion para la escena de inicio
 	public void escenaInicio(VentanaPrincipal ventanaPrincipal, KeyEvent e) {
@@ -23,6 +19,16 @@ public class ControladorVista {
 		} else if (tecla == KeyEvent.VK_ESCAPE) {
 			ventanaPrincipal.dispose();
 		}
+	}
+
+	// funcion para cambiar a la pestaña de los saves
+	public void entrarSaves(VentanaPrincipal ventanaPrincipal) {
+		ventanaPrincipal.mostrarEscena("ESCENA_SAVES");
+	}
+	
+	// funcion para volver de la pestaña de los saves
+	public void volverSaves(VentanaPrincipal ventanaPrincipal) {
+		ventanaPrincipal.mostrarEscena("ESCENA_MENU");
 	}
 
 	// funciones generales de menu
@@ -40,9 +46,5 @@ public class ControladorVista {
 
 	public void errorNoSaves(JPanel panel) {
 		JOptionPane.showMessageDialog(panel, "No hay ninguna partida guardada!", null, JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void abrirSaves() {
-		ventanaSaves.setVisible(true);
 	}
 }

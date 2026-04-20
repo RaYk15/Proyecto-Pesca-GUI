@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import modelo.Inventario;
 import modelo.Jugador;
 import modelo.Tienda;
+import vista.VentanaPrincipal;
 
 // cosas a guardar en los saves: Jugador.invenario, Jugador.oro, Tienda.stock
 public class ControladorSaves {
@@ -35,13 +36,13 @@ public class ControladorSaves {
 
 	}
 
-	// cargar partida
-	public void cargarPartida(JPanel panel) {
+	//cargar partida
+	public void cargarPartida(JPanel panel, VentanaPrincipal ventanaPrincipal) {
 		try (var entries = Files.list(userData)) {
 			if (entries.findAny().isEmpty()) {
 				controladorVista.errorNoSaves(panel);
 			} else {
-				controladorVista.abrirSaves();
+				controladorVista.entrarSaves(ventanaPrincipal);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -49,12 +50,12 @@ public class ControladorSaves {
 	}
 	
 	// continuar partida
-	public void continuarPartida(JPanel panel) {
+	public void continuarPartida(JPanel panel, VentanaPrincipal ventanaPrincipal) {
 		try (var entries = Files.list(userData)) {
 			if (entries.findAny().isEmpty()) {
 				controladorVista.errorNoSaves(panel);
 			} else {
-				controladorVista.abrirSaves();
+				controladorVista.entrarSaves(ventanaPrincipal);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
