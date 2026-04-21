@@ -3,7 +3,7 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.ControladorVista;
+import controlador.ControladorJuego;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -16,7 +16,6 @@ public class PanelInicio extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	// atributos
 	VentanaPrincipal ventanaPrincipal;
-	ControladorVista controlador = new ControladorVista();
 
 	// constructor
 	public PanelInicio(VentanaPrincipal ventanaPrincipal) {
@@ -59,7 +58,7 @@ public class PanelInicio extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		controlador.escenaInicio(ventanaPrincipal, e);
+		ControladorJuego.CONTROLADOR_VISTA.escenaInicio(ventanaPrincipal, e);
 	}
 
 	@Override

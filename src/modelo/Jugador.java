@@ -6,6 +6,8 @@ public class Jugador {
 	 * Nombre del jugador
 	 */
 	private String nombre;
+	
+	private NPC[]tripulantes;
 	/**
 	 * Inventario del jugador
 	 */
@@ -22,9 +24,10 @@ public class Jugador {
 	 * @param nombre     Nombre del jugador
 	 * @param opcionModo Modo de juego (Debug o normal)
 	 */
-	public Jugador(String nombre) {
+	public Jugador(String nombre, NPC[]tripulantes) {
 		this.nombre = nombre;
-
+		this.tripulantes = tripulantes;
+		
 		Item canaBase = new CanaPescar("Caña de pescar básica", "cana_base", 5, 10);
 		oro = 10;
 		inventario.anadirItem(canaBase);
@@ -73,6 +76,14 @@ public class Jugador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public NPC[] getTripulantes() {
+		return tripulantes;
+	}
+
+	public void setTripulantes(NPC[] tripulantes) {
+		this.tripulantes = tripulantes;
 	}
 
 	// metodos propios

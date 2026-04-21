@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controlador.ControladorVista;
+import controlador.ControladorJuego;
 
 public class PanelSaves extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +28,6 @@ public class PanelSaves extends JPanel {
 	private JPanel panelCargar;
 	private JPanel panelBorrar;
 	private JPanel panelVolver;
-	private ControladorVista controladorVista = new ControladorVista();
 
 	// constructor
 	public PanelSaves(VentanaPrincipal ventanaPrincipal) {
@@ -86,12 +85,12 @@ public class PanelSaves extends JPanel {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				controladorVista.entrarHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.entrarHover(panel);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				controladorVista.salirHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.salirHover(panel);
 			}
 		});
 
@@ -121,7 +120,7 @@ public class PanelSaves extends JPanel {
 		panelVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventanaPrincipal.mostrarEscena("ESCENA_MENU");
+				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
 			}
 		});
 	}

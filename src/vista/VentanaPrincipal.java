@@ -5,29 +5,43 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controlador.ControladorJuego;
+import controlador.ControladorSaves;
+
 public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	// atributos
 	private CardLayout cardLayout;
 	private JPanel contenedor;
+	private ControladorSaves controladorSaves;
+	private ControladorJuego controladorJuego;
 
-	public VentanaPrincipal() {
-		// atributos de la ventana
+	public VentanaPrincipal(ControladorSaves controladorSaves, ControladorJuego controladorJuego) {
+		this.controladorJuego = controladorJuego;
+		this.controladorSaves = controladorSaves;
+		inicializarVentana();
+		inicializarEscenas();
+
+	}
+
+	private void inicializarVentana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		setResizable(false);
 		setTitle("Cañones Y Fogones");
+	}
 
+	private void inicializarEscenas() {
 		cardLayout = new CardLayout();
 		contenedor = new JPanel(cardLayout);
 
 		// escenas
 		PanelInicio escenaInicio = new PanelInicio(this);
-		PanelMenu escenaMenu = new PanelMenu(this);
+		PanelMenu escenaMenu = new PanelMenu(this, controladorSaves);
 		PanelSaves escenaSaves = new PanelSaves(this);
 		PanelIntroduccion escenaIntro = new PanelIntroduccion(this);
-		PanelCreacion escenaCreacion = new PanelCreacion(this);
+		PanelCreacion escenaCreacion = new PanelCreacion(this, controladorJuego);
 
 		contenedor.add(escenaInicio, "ESCENA_INICIO");
 		contenedor.add(escenaMenu, "ESCENA_MENU");

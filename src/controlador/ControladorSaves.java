@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 import javax.swing.JPanel;
 
-import modelo.Inventario;
 import modelo.Jugador;
 import modelo.Tienda;
 import vista.VentanaPrincipal;
@@ -15,11 +14,7 @@ import vista.VentanaPrincipal;
 // cosas a guardar en los saves: Jugador.invenario, Jugador.oro, Tienda.stock
 public class ControladorSaves {
 	// atributos
-	private ControladorVista controladorVista = new ControladorVista();
 	private Path userData;
-	private Jugador jugador;
-	private Inventario inventario;
-	private Tienda tienda;
 
 	// constructor
 	public ControladorSaves() {
@@ -32,30 +27,30 @@ public class ControladorSaves {
 	}
 
 	// guardar partida
-	public void guardarPartida() {
+	public void guardarPartida(Jugador jugador, Tienda tienda) {
 		
 	}
 
-	//cargar partida
+	// cargar partida
 	public void cargarPartida(JPanel panel, VentanaPrincipal ventanaPrincipal) {
 		try (var entries = Files.list(userData)) {
 			if (entries.findAny().isEmpty()) {
-				controladorVista.errorNoSaves(panel);
+				ControladorJuego.CONTROLADOR_VISTA.errorNoSaves(panel);
 			} else {
-				controladorVista.entrarSaves(ventanaPrincipal);
+				ControladorJuego.CONTROLADOR_VISTA.entrarSaves(ventanaPrincipal);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// continuar partida
 	public void continuarPartida(JPanel panel, VentanaPrincipal ventanaPrincipal) {
 		try (var entries = Files.list(userData)) {
 			if (entries.findAny().isEmpty()) {
-				controladorVista.errorNoSaves(panel);
+				ControladorJuego.CONTROLADOR_VISTA.errorNoSaves(panel);
 			} else {
-				controladorVista.entrarSaves(ventanaPrincipal);
+				ControladorJuego.CONTROLADOR_VISTA.entrarSaves(ventanaPrincipal);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

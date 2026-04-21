@@ -14,15 +14,8 @@ public class Tienda {
 
 	/**
 	 * Constructor de la tienda
-	 * 
-	 * @param tendero NPC a cargo de la tienda
-	 * @param item1   Item disponnible en la tienda
-	 * @param item2   Item disponnible en la tienda
-	 * @param item3   Item disponnible en la tienda
-	 * @param item4   Item disponnible en la tienda
-	 * @param item5   Item disponnible en la tienda
 	 */
-	public Tienda(NPC tendero, CanaPescar item1, CanaPescar item2, CanaPescar item3, Item item4, Item item5) {
+	public Tienda() {
 		stock = new Inventario();
 		stock.anadirItem(new CanaPescar("Caña de pescar flexible", "cana_flexi", 75, 15));
 		stock.anadirItem(new CanaPescar("Caña de pescar reforzada", "cana_reforz", 150, 20));

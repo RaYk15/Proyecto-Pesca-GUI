@@ -25,6 +25,10 @@ public class NPC {
 		this.primeraFrase = primeraFrase;
 	}
 
+	public NPC(String nombre) {
+		this.nombre = nombre;
+	}
+
 	// getters y setters
 	/**
 	 * Getter del nombre

@@ -3,8 +3,8 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.ControladorJuego;
 import controlador.ControladorSaves;
-import controlador.ControladorVista;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -24,15 +24,15 @@ public class PanelMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	// atributos
 	VentanaPrincipal ventanaPrincipal;
-	ControladorVista controladorVista = new ControladorVista();
-	ControladorSaves controladorSaves = new ControladorSaves();
+	ControladorSaves controladorSaves;
 	private JPanel panelNueva;
 	private JPanel panelContinuar;
 	private JPanel panelCargar;
 	private JPanel panelSalir;
 
 	// constructor
-	public PanelMenu(VentanaPrincipal ventanaPrincipal) {
+	public PanelMenu(VentanaPrincipal ventanaPrincipal, ControladorSaves controladorSaves) {
+		this.controladorSaves = controladorSaves;
 		this.ventanaPrincipal = ventanaPrincipal;
 		inicializarPanel();
 		inicializarComponentes();
@@ -89,12 +89,12 @@ public class PanelMenu extends JPanel {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				controladorVista.entrarHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.entrarHover(panel);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				controladorVista.salirHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.salirHover(panel);
 			}
 		});
 
@@ -106,14 +106,14 @@ public class PanelMenu extends JPanel {
 		panelNueva.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controladorVista.escenaIntro(ventanaPrincipal);
+				ControladorJuego.CONTROLADOR_VISTA.escenaIntro(ventanaPrincipal);
 			}
 		});
-		
+
 		panelSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controladorVista.cerrarVentana(ventanaPrincipal);
+				ControladorJuego.CONTROLADOR_VISTA.cerrarVentana(ventanaPrincipal);
 			}
 		});
 

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controlador.ControladorVista;
+import controlador.ControladorJuego;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,7 +23,6 @@ import javax.swing.JLabel;
 public class PanelIntroduccion extends JPanel {
 	private static final long serialVersionUID = 1L;
 	// atributos
-	private ControladorVista controladorVista = new ControladorVista();
 	private VentanaPrincipal ventanaPrincipal;
 	private CardLayout cardIntro;
 	private JPanel panelIntro;
@@ -116,12 +115,12 @@ public class PanelIntroduccion extends JPanel {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				controladorVista.entrarHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.entrarHover(panel);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				controladorVista.salirHover(panel);
+				ControladorJuego.CONTROLADOR_VISTA.salirHover(panel);
 			}
 		});
 
@@ -178,7 +177,7 @@ public class PanelIntroduccion extends JPanel {
 		panelComenzar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controladorVista.entrarCreacion(ventanaPrincipal);
+				ControladorJuego.CONTROLADOR_VISTA.entrarCreacion(ventanaPrincipal);
 			}
 		});
 	}
