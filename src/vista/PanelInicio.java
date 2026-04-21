@@ -5,7 +5,6 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorVista;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -20,8 +19,8 @@ public class PanelInicio extends JPanel implements KeyListener {
 	ControladorVista controlador = new ControladorVista();
 
 	// constructor
-	public PanelInicio(JFrame ventanaPrincipal) {
-		this.ventanaPrincipal = (VentanaPrincipal) ventanaPrincipal;
+	public PanelInicio(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
 		inicializarPanel();
 		inicializarComponentes();
 		addKeyListener(this);

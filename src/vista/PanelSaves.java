@@ -12,7 +12,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -32,8 +31,8 @@ public class PanelSaves extends JPanel {
 	private ControladorVista controladorVista = new ControladorVista();
 
 	// constructor
-	public PanelSaves(JFrame ventanaPrincipal) {
-		this.ventanaPrincipal = (VentanaPrincipal) ventanaPrincipal;
+	public PanelSaves(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
 		inicializarPanel();
 		inicializarComponentes();
 		inicializarLogica();

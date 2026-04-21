@@ -1,6 +1,5 @@
 package vista;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,7 +24,7 @@ public class PanelMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	// atributos
 	VentanaPrincipal ventanaPrincipal;
-	ControladorVista controlador = new ControladorVista();
+	ControladorVista controladorVista = new ControladorVista();
 	ControladorSaves controladorSaves = new ControladorSaves();
 	private JPanel panelNueva;
 	private JPanel panelContinuar;
@@ -33,8 +32,8 @@ public class PanelMenu extends JPanel {
 	private JPanel panelSalir;
 
 	// constructor
-	public PanelMenu(JFrame ventanaPrincipal) {
-		this.ventanaPrincipal = (VentanaPrincipal) ventanaPrincipal;
+	public PanelMenu(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
 		inicializarPanel();
 		inicializarComponentes();
 		inicializarLogica();
@@ -42,7 +41,7 @@ public class PanelMenu extends JPanel {
 
 	// inicializar panel
 	private void inicializarPanel() {
-		this.setBorder(new EmptyBorder(55, 16, 55, 16));
+		this.setBorder(new EmptyBorder(50, 16, 50, 16));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 
@@ -51,7 +50,6 @@ public class PanelMenu extends JPanel {
 		// lbl para el titulo, no tiene interacciones
 		JLabel lblTitulo = new JLabel("Cañones Y Fogones");
 		lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblTitulo.setAlignmentY(0.0f);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Dialog", Font.BOLD, 40));
 		crearEspaciado(this, lblTitulo, 30);
@@ -91,12 +89,12 @@ public class PanelMenu extends JPanel {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				controlador.entrarHover(panel);
+				controladorVista.entrarHover(panel);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				controlador.salirHover(panel);
+				controladorVista.salirHover(panel);
 			}
 		});
 
@@ -105,10 +103,17 @@ public class PanelMenu extends JPanel {
 
 	// inicializar la lógica de cada opción del menu
 	private void inicializarLogica() {
+		panelNueva.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				controladorVista.escenaIntro(ventanaPrincipal);
+			}
+		});
+		
 		panelSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				controlador.cerrarVentana(ventanaPrincipal);
+				controladorVista.cerrarVentana(ventanaPrincipal);
 			}
 		});
 

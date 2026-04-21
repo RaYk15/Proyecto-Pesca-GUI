@@ -33,7 +33,7 @@ public class ControladorSaves {
 
 	// guardar partida
 	public void guardarPartida() {
-
+		
 	}
 
 	//cargar partida

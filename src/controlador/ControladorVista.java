@@ -11,7 +11,7 @@ import vista.VentanaPrincipal;
 
 public class ControladorVista {
 	// metodos propios
-	// funcion para la escena de inicio
+	// funcion para entrar o cerrar en la escena de inicio
 	public void escenaInicio(VentanaPrincipal ventanaPrincipal, KeyEvent e) {
 		int tecla = e.getKeyCode();
 		if (tecla == KeyEvent.VK_ENTER) {
@@ -20,18 +20,28 @@ public class ControladorVista {
 			ventanaPrincipal.dispose();
 		}
 	}
+	
+	// funcion para entrar en la escena de introduccion
+	public void escenaIntro(VentanaPrincipal ventanaPrincipal) {
+		ventanaPrincipal.mostrarEscena("ESCENA_INTRO");
+	}
 
-	// funcion para cambiar a la pestaña de los saves
+	// funcion para entrar en la escena de saves
 	public void entrarSaves(VentanaPrincipal ventanaPrincipal) {
 		ventanaPrincipal.mostrarEscena("ESCENA_SAVES");
 	}
 	
-	// funcion para volver de la pestaña de los saves
+	// funcion para entrar en la escena de menu
 	public void volverSaves(VentanaPrincipal ventanaPrincipal) {
 		ventanaPrincipal.mostrarEscena("ESCENA_MENU");
 	}
+	
+	// funcion para entrar en la escena de creación de personaje
+	public void entrarCreacion(VentanaPrincipal ventanaPrincipal) {
+		ventanaPrincipal.mostrarEscena("ESCENA_CREACION");
+	}
 
-	// funciones generales de menu
+	// hover de los botones
 	public void entrarHover(JPanel panel) {
 		panel.setBackground(Color.decode("#C8C8C8"));
 	}
@@ -40,10 +50,12 @@ public class ControladorVista {
 		panel.setBackground(Color.decode("#EEEEEE"));
 	}
 
+	// chapar ventana
 	public void cerrarVentana(JFrame ventanaPrincipal) {
 		ventanaPrincipal.dispose();
 	}
 
+	// JOptionPane que salta si vas a cargar o continuar partida y no tienes saves
 	public void errorNoSaves(JPanel panel) {
 		JOptionPane.showMessageDialog(panel, "No hay ninguna partida guardada!", null, JOptionPane.ERROR_MESSAGE);
 	}

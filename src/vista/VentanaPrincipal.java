@@ -26,10 +26,14 @@ public class VentanaPrincipal extends JFrame {
 		PanelInicio escenaInicio = new PanelInicio(this);
 		PanelMenu escenaMenu = new PanelMenu(this);
 		PanelSaves escenaSaves = new PanelSaves(this);
+		PanelIntroduccion escenaIntro = new PanelIntroduccion(this);
+		PanelCreacion escenaCreacion = new PanelCreacion(this);
 
 		contenedor.add(escenaInicio, "ESCENA_INICIO");
 		contenedor.add(escenaMenu, "ESCENA_MENU");
 		contenedor.add(escenaSaves, "ESCENA_SAVES");
+		contenedor.add(escenaIntro, "ESCENA_INTRO");
+		contenedor.add(escenaCreacion, "ESCENA_CREACION");
 
 		add(contenedor);
 		cardLayout.show(contenedor, "ESCENA_INICIO");
