@@ -119,4 +119,12 @@ public class ControladorSaves {
 			e.printStackTrace();
 		}
 	}
+
+	public void borrarPartida(String nombreSave) {
+		try {
+			Files.delete(Path.of("data", "usuarios", nombreSave));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
