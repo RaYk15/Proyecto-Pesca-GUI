@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.DatosPartida;
 import modelo.Jugador;
 import modelo.NPC;
 import modelo.Tienda;
@@ -31,12 +32,14 @@ public class ControladorJuego {
 	}
 
 	public void crearJugador(String nombreCap, String[] tripulantes) {
+		DatosPartida datosPartida;
 		NPC[] tripulacion = new NPC[4];
 		for (int i = 0; i < 4; i++) {
 			NPC tripulante = new NPC(tripulantes[i]);
 			tripulacion[i] = tripulante;
 		}
 		jugador = new Jugador(nombreCap, tripulacion);
-		controladorSaves.guardarPartida(jugador, tienda);
+		datosPartida = new DatosPartida(jugador, tienda);
+		controladorSaves.guardarPartida(datosPartida);
 	}
 }

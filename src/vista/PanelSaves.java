@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,22 +18,29 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorJuego;
+import controlador.ControladorSaves;
 
 public class PanelSaves extends JPanel {
 	private static final long serialVersionUID = 1L;
 	// atributos
 	private VentanaPrincipal ventanaPrincipal;
+	private ControladorSaves controladorSaves;
 	private JPanel panelCargar;
 	private JPanel panelBorrar;
 	private JPanel panelVolver;
+	private JLabel lblDatosPartida;
+	private JList<String> listaSaves;
 
 	// constructor
-	public PanelSaves(VentanaPrincipal ventanaPrincipal) {
+	public PanelSaves(VentanaPrincipal ventanaPrincipal, ControladorSaves controladorSaves) {
 		this.ventanaPrincipal = ventanaPrincipal;
+		this.controladorSaves = controladorSaves;
 		inicializarPanel();
 		inicializarComponentes();
 		inicializarLogica();
@@ -58,12 +67,23 @@ public class PanelSaves extends JPanel {
 		crearEspaciado(panelOpciones, panelCargar, 30);
 		crearEspaciado(panelOpciones, panelBorrar, 30);
 		crearEspaciado(panelOpciones, panelVolver, 30);
+
+		JPanel panelDatosPartida = new JPanel();
+		panelDatosPartida.setLayout(new BorderLayout(16, 16));
+		panelDatosPartida.setBorder(new EmptyBorder(6, 6, 6, 6));
+		panelDatosPartida.setOpaque(true);
+		panelDatosPartida.setBackground(Color.decode("#FFFFFF"));
+		lblDatosPartida = new JLabel();
+		lblTitulo.setFont(new Font("Dialog", Font.BOLD, 14));
+		panelDatosPartida.add(lblDatosPartida);
+		crearEspaciado(panelOpciones, panelDatosPartida, 0);
 		add(panelOpciones, BorderLayout.WEST);
 
 		// centro para la lista
 		DefaultListModel<String> modelo = new DefaultListModel<>();
-		JList<String> listaSaves = new JList<>(modelo);
+		listaSaves = new JList<>(modelo);
 		JScrollPane scroll = new JScrollPane(listaSaves);
+		controladorSaves.recuperarListaSaves(modelo);
 		add(scroll, BorderLayout.CENTER);
 	}
 
@@ -121,6 +141,13 @@ public class PanelSaves extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
+			}
+		});
+		
+		listaSaves.addListSelectionListener(e -> {
+			if (!e.getValueIsAdjusting()) {
+				String seleccionado = listaSaves.getSelectedValue();
+				controladorSaves.mostrarDatosPartida(seleccionado, lblDatosPartida);
 			}
 		});
 	}

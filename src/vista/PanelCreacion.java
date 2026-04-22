@@ -38,6 +38,7 @@ public class PanelCreacion extends JPanel {
 		this.ventanaPrincipal = ventanaPrincipal;
 		inicializarPanel();
 		inicializarComponentes();
+		inicializarLogica();
 	}
 
 	private void inicializarPanel() {
@@ -187,24 +188,31 @@ public class PanelCreacion extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String[] tripulantes = new String[4];
 				String nombreCap;
-				try {
-					nombreCap = txtNombre.getText();
-					try {
-						tripulantes[0] = txtTrip1.getText();
-						tripulantes[1] = txtTrip2.getText();
-						tripulantes[2] = txtTrip3.getText();
-						tripulantes[3] = txtTrip4.getText();
-						controladorJuego.crearJugador(nombreCap, tripulantes);
-						ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
-					} catch (NullPointerException ex) {
+				boolean tripSinNombre = false;
+				nombreCap = txtNombre.getText();
+				if (nombreCap.isBlank()) {
+					JOptionPane.showMessageDialog(panelFinalizar, "No podemos tener un capitán sin nombre!", null,
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					tripulantes[0] = txtTrip1.getText();
+					tripulantes[1] = txtTrip2.getText();
+					tripulantes[2] = txtTrip3.getText();
+					tripulantes[3] = txtTrip4.getText();
+					for (int i = 0; i < tripulantes.length; i++) {
+						if (tripulantes[i].isBlank()) {
+							tripSinNombre = true;
+						}
+					}
+					if (tripSinNombre) {
 						JOptionPane.showMessageDialog(panelFinalizar, "No puedes dejar a ningún tripulante sin nombre!",
 								null, JOptionPane.ERROR_MESSAGE);
+					} else {
+						controladorJuego.crearJugador(nombreCap, tripulantes);
+						JOptionPane.showMessageDialog(panelFinalizar, "Partida creada correctamente!",
+								null, JOptionPane.INFORMATION_MESSAGE);
+						ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
 					}
-				} catch (NullPointerException ex) {
-					JOptionPane.showMessageDialog(panelFinalizar, "No podemos tener un capitán sin nombre!",
-							null, JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 	}

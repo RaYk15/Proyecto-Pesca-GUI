@@ -39,7 +39,7 @@ public class VentanaPrincipal extends JFrame {
 		// escenas
 		PanelInicio escenaInicio = new PanelInicio(this);
 		PanelMenu escenaMenu = new PanelMenu(this, controladorSaves);
-		PanelSaves escenaSaves = new PanelSaves(this);
+		PanelSaves escenaSaves = new PanelSaves(this, controladorSaves);
 		PanelIntroduccion escenaIntro = new PanelIntroduccion(this);
 		PanelCreacion escenaCreacion = new PanelCreacion(this, controladorJuego);
 

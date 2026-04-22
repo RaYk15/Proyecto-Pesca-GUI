@@ -3,9 +3,11 @@ package app;
 import controlador.ControladorJuego;
 
 public class App {
-	// atributos
-	private static final ControladorJuego CONTROLADOR_JUEGO = new ControladorJuego();
 	public static void main(String[] args) {
+		// atributo
+		final ControladorJuego CONTROLADOR_JUEGO = new ControladorJuego();
+
+		// iniciar el juego
 		CONTROLADOR_JUEGO.comenzar();
 	}
 }
