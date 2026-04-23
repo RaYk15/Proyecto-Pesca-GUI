@@ -16,7 +16,13 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel contenedor;
 	private ControladorSaves controladorSaves;
 	private ControladorJuego controladorJuego;
+	private PanelInicio escenaInicio;
+	private PanelMenu escenaMenu;
+	private PanelSaves escenaSaves;
+	private PanelIntroduccion escenaIntro;
+	private PanelCreacion escenaCreacion;
 
+	// constructor
 	public VentanaPrincipal(ControladorSaves controladorSaves, ControladorJuego controladorJuego) {
 		this.controladorJuego = controladorJuego;
 		this.controladorSaves = controladorSaves;
@@ -25,6 +31,7 @@ public class VentanaPrincipal extends JFrame {
 
 	}
 
+	// metodos propios
 	private void inicializarVentana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
@@ -37,11 +44,11 @@ public class VentanaPrincipal extends JFrame {
 		contenedor = new JPanel(cardLayout);
 
 		// escenas
-		PanelInicio escenaInicio = new PanelInicio(this);
-		PanelMenu escenaMenu = new PanelMenu(this, controladorSaves);
-		PanelSaves escenaSaves = new PanelSaves(this, controladorSaves);
-		PanelIntroduccion escenaIntro = new PanelIntroduccion(this);
-		PanelCreacion escenaCreacion = new PanelCreacion(this, controladorJuego);
+		escenaInicio = new PanelInicio(this);
+		escenaMenu = new PanelMenu(this, controladorSaves);
+		escenaSaves = new PanelSaves(this, controladorSaves);
+		escenaIntro = new PanelIntroduccion(this);
+		escenaCreacion = new PanelCreacion(this, controladorJuego);
 
 		contenedor.add(escenaInicio, "ESCENA_INICIO");
 		contenedor.add(escenaMenu, "ESCENA_MENU");
@@ -55,6 +62,47 @@ public class VentanaPrincipal extends JFrame {
 
 	public void mostrarEscena(String nombre) {
 		cardLayout.show(contenedor, nombre);
+	}
+
+	// getters y setters
+	public PanelInicio getEscenaInicio() {
+		return escenaInicio;
+	}
+
+	public void setEscenaInicio(PanelInicio escenaInicio) {
+		this.escenaInicio = escenaInicio;
+	}
+
+	public PanelMenu getEscenaMenu() {
+		return escenaMenu;
+	}
+
+	public void setEscenaMenu(PanelMenu escenaMenu) {
+		this.escenaMenu = escenaMenu;
+	}
+
+	public PanelSaves getEscenaSaves() {
+		return escenaSaves;
+	}
+
+	public void setEscenaSaves(PanelSaves escenaSaves) {
+		this.escenaSaves = escenaSaves;
+	}
+
+	public PanelIntroduccion getEscenaIntro() {
+		return escenaIntro;
+	}
+
+	public void setEscenaIntro(PanelIntroduccion escenaIntro) {
+		this.escenaIntro = escenaIntro;
+	}
+
+	public PanelCreacion getEscenaCreacion() {
+		return escenaCreacion;
+	}
+
+	public void setEscenaCreacion(PanelCreacion escenaCreacion) {
+		this.escenaCreacion = escenaCreacion;
 	}
 
 }

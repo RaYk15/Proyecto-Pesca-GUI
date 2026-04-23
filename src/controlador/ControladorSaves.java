@@ -23,6 +23,7 @@ import vista.VentanaPrincipal;
 public class ControladorSaves {
 	// atributos
 	private Path userData;
+	private DefaultListModel<String> modelo;
 
 	// constructor
 	public ControladorSaves() {
@@ -61,6 +62,7 @@ public class ControladorSaves {
 			if (entries.findAny().isEmpty()) {
 				ControladorJuego.CONTROLADOR_VISTA.errorNoSaves(panel);
 			} else {
+				recuperarListaSaves(modelo);
 				ControladorJuego.CONTROLADOR_VISTA.entrarSaves(ventanaPrincipal);
 			}
 		} catch (IOException e) {
@@ -84,8 +86,10 @@ public class ControladorSaves {
 	// crea una lista con todos los arcihvos en la carpeta de data/usuarios, filtra
 	// que el archivo sea .json y le pasa esa lista a la JList en PanelSaves
 	public void recuperarListaSaves(DefaultListModel<String> modelo) {
+		this.modelo = modelo;
 		ArrayList<String> listaSaves = new ArrayList<>();
 		try {
+			modelo.clear();
 			Files.list(userData).forEach(p -> listaSaves.add(p.getFileName().toString()));
 			for (int i = 0; i < listaSaves.size(); i++) {
 				if (listaSaves.get(i).matches(".*\\.json$")) {
@@ -120,9 +124,13 @@ public class ControladorSaves {
 		}
 	}
 
-	public void borrarPartida(String nombreSave) {
+	public void borrarPartida(String nombreSave, VentanaPrincipal ventanaPrincipal) {
 		try {
 			Files.delete(Path.of("data", "usuarios", nombreSave));
+			var entries = Files.list(userData);
+			if (entries.findAny().isEmpty()) {
+				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

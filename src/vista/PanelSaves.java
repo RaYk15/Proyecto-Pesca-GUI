@@ -7,8 +7,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,10 +14,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -36,6 +33,7 @@ public class PanelSaves extends JPanel {
 	private JPanel panelVolver;
 	private JLabel lblDatosPartida;
 	private JList<String> listaSaves;
+	private DefaultListModel<String> modeloLista;
 
 	// constructor
 	public PanelSaves(VentanaPrincipal ventanaPrincipal, ControladorSaves controladorSaves) {
@@ -80,10 +78,10 @@ public class PanelSaves extends JPanel {
 		add(panelOpciones, BorderLayout.WEST);
 
 		// centro para la lista
-		DefaultListModel<String> modelo = new DefaultListModel<>();
-		listaSaves = new JList<>(modelo);
+		modeloLista = new DefaultListModel<>();
+		listaSaves = new JList<>(modeloLista);
 		JScrollPane scroll = new JScrollPane(listaSaves);
-		controladorSaves.recuperarListaSaves(modelo);
+		controladorSaves.recuperarListaSaves(modeloLista);
 		add(scroll, BorderLayout.CENTER);
 	}
 
@@ -125,31 +123,99 @@ public class PanelSaves extends JPanel {
 
 	// inicializar la lógica de cada opción del menu WIP
 	private void inicializarLogica() {
-		panelCargar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-
-		panelBorrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-
 		panelVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
 			}
 		});
-		
+
 		listaSaves.addListSelectionListener(e -> {
+			// guardar el nombre del archivo que se selecciona en la JList
 			if (!e.getValueIsAdjusting()) {
-				String seleccionado = listaSaves.getSelectedValue();
-				controladorSaves.mostrarDatosPartida(seleccionado, lblDatosPartida);
+				final String SELECCIONADO = listaSaves.getSelectedValue();
+				// ESTA MIERDA ESTA DANDO PROBLEMAS, ARREGLAR
+				controladorSaves.mostrarDatosPartida(SELECCIONADO, lblDatosPartida);
+				
+				// cargar partida
+				panelCargar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				
+				// borrar partidad
+				panelBorrar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int seleccion = JOptionPane.showConfirmDialog(panelBorrar,
+								"Seguro que quieres borrar la partida?", "Selecciona una opción",
+								JOptionPane.YES_NO_OPTION);
+						if (seleccion == 0) {
+							controladorSaves.borrarPartida(SELECCIONADO, ventanaPrincipal);
+							controladorSaves.recuperarListaSaves(modeloLista);
+						}
+					}
+				});
 			}
 		});
+	}
+
+	// getters y setters
+	public VentanaPrincipal getVentanaPrincipal() {
+		return ventanaPrincipal;
+	}
+
+	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
+	}
+
+	public JPanel getPanelCargar() {
+		return panelCargar;
+	}
+
+	public void setPanelCargar(JPanel panelCargar) {
+		this.panelCargar = panelCargar;
+	}
+
+	public JPanel getPanelBorrar() {
+		return panelBorrar;
+	}
+
+	public void setPanelBorrar(JPanel panelBorrar) {
+		this.panelBorrar = panelBorrar;
+	}
+
+	public JPanel getPanelVolver() {
+		return panelVolver;
+	}
+
+	public void setPanelVolver(JPanel panelVolver) {
+		this.panelVolver = panelVolver;
+	}
+
+	public JLabel getLblDatosPartida() {
+		return lblDatosPartida;
+	}
+
+	public void setLblDatosPartida(JLabel lblDatosPartida) {
+		this.lblDatosPartida = lblDatosPartida;
+	}
+
+	public JList<String> getListaSaves() {
+		return listaSaves;
+	}
+
+	public void setListaSaves(JList<String> listaSaves) {
+		this.listaSaves = listaSaves;
+	}
+
+	public DefaultListModel<String> getModeloLista() {
+		return modeloLista;
+	}
+
+	public void setModeloLista(DefaultListModel<String> modeloLista) {
+		this.modeloLista = modeloLista;
 	}
 
 }

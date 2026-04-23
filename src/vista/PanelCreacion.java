@@ -208,8 +208,13 @@ public class PanelCreacion extends JPanel {
 								null, JOptionPane.ERROR_MESSAGE);
 					} else {
 						controladorJuego.crearJugador(nombreCap, tripulantes);
-						JOptionPane.showMessageDialog(panelFinalizar, "Partida creada correctamente!",
-								null, JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(panelFinalizar, "Partida creada correctamente!", null,
+								JOptionPane.INFORMATION_MESSAGE);
+						txtNombre.setText(null);
+						txtTrip1.setText(null);
+						txtTrip2.setText(null);
+						txtTrip3.setText(null);
+						txtTrip4.setText(null);
 						ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
 					}
 				}

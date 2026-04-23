@@ -26,6 +26,7 @@ public class PanelIntroduccion extends JPanel {
 	private VentanaPrincipal ventanaPrincipal;
 	private CardLayout cardIntro;
 	private JPanel panelIntro;
+	private JPanel panelSalir;
 	private JPanel panelVolver;
 	private JPanel panelSiguiente;
 	private JPanel panelComenzar;
@@ -56,9 +57,11 @@ public class PanelIntroduccion extends JPanel {
 		panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.X_AXIS));
 		panelOpciones.add(Box.createHorizontalGlue());
 		// botones
+		panelSalir = crearOpcionMenu("Salir");
 		panelSiguiente = crearOpcionMenu("Siguiente");
 		panelVolver = crearOpcionMenu("Volver");
 		panelComenzar = crearOpcionMenu("Comenzar!");
+		crearEspaciado(panelOpciones, panelSalir, 30);
 		crearEspaciado(panelOpciones, panelVolver, 30);
 		panelVolver.setVisible(false);
 		crearEspaciado(panelOpciones, panelSiguiente, 30);
@@ -134,6 +137,7 @@ public class PanelIntroduccion extends JPanel {
 				switch (contadorLbl) {
 				case 1:
 					cardIntro.show(panelIntro, "INTRO_2");
+					panelSalir.setVisible(false);
 					panelVolver.setVisible(true);
 					contadorLbl++;
 					break;
@@ -157,6 +161,7 @@ public class PanelIntroduccion extends JPanel {
 				switch (contadorLbl) {
 				case 2:
 					cardIntro.show(panelIntro, "INTRO_1");
+					panelSalir.setVisible(true);
 					panelVolver.setVisible(false);
 					contadorLbl--;
 					break;
@@ -173,11 +178,24 @@ public class PanelIntroduccion extends JPanel {
 				}
 			}
 		});
-		
+
 		panelComenzar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorJuego.CONTROLADOR_VISTA.entrarCreacion(ventanaPrincipal);
+				contadorLbl = 1;
+				cardIntro.show(panelIntro, "INTRO_1");
+				panelSalir.setVisible(true);
+				panelSiguiente.setVisible(true);
+				panelVolver.setVisible(false);
+				panelComenzar.setVisible(false);
+			}
+		});
+
+		panelSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
 			}
 		});
 	}

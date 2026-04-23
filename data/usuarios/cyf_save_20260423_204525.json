@@ -1,0 +1,80 @@
+{
+  "jugador": {
+    "nombre": "6726yruf",
+    "tripulantes": [
+      {
+        "nombre": "khesuhf"
+      },
+      {
+        "nombre": "ejsbvsjh"
+      },
+      {
+        "nombre": "vbejsvkes"
+      },
+      {
+        "nombre": "vbejksvkj"
+      }
+    ],
+    "inventario": {
+      "inventario": {
+        "Items": {
+          "cana_base": {
+            "linea": 10,
+            "nombre": "Caña de pescar básica",
+            "precio": 5,
+            "cantidad": 1,
+            "id": "cana_base"
+          }
+        },
+        "Peces": {}
+      }
+    },
+    "oro": 10
+  },
+  "tienda": {
+    "stock": {
+      "inventario": {
+        "Items": {
+          "cebo_m": {
+            "nombre": "Cebo bueno",
+            "precio": 20,
+            "cantidad": 5,
+            "id": "cebo_m"
+          },
+          "cebo_l": {
+            "nombre": "Cebo excelente",
+            "precio": 50,
+            "cantidad": 5,
+            "id": "cebo_l"
+          },
+          "cana_reforz": {
+            "linea": 20,
+            "nombre": "Caña de pescar reforzada",
+            "precio": 150,
+            "cantidad": 1,
+            "id": "cana_reforz"
+          },
+          "cana_maestra": {
+            "linea": 25,
+            "nombre": "Caña maestra",
+            "precio": 300,
+            "cantidad": 1,
+            "id": "cana_maestra"
+          },
+          "cana_flexi": {
+            "linea": 15,
+            "nombre": "Caña de pescar flexible",
+            "precio": 75,
+            "cantidad": 1,
+            "id": "cana_flexi"
+          }
+        },
+        "Peces": {}
+      }
+    },
+    "TENDERO": {
+      "nombre": "Alexander el Tendero",
+      "primeraFrase": "Alexander el Tendero: \u0027Echa un ojo si quieres, pero si no vas a comprar nada no me hagas perder el tiempo.\u0027"
+    }
+  }
+}
