@@ -127,9 +127,10 @@ public class ControladorSaves {
 	public void borrarPartida(String nombreSave, VentanaPrincipal ventanaPrincipal) {
 		try {
 			Files.delete(Path.of("data", "usuarios", nombreSave));
-			var entries = Files.list(userData);
-			if (entries.findAny().isEmpty()) {
-				ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
+			try (var entries = Files.list(userData)) {
+				if (entries.findAny().isEmpty()) {
+					ControladorJuego.CONTROLADOR_VISTA.volverSaves(ventanaPrincipal);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
